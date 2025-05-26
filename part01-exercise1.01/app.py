@@ -1,12 +1,18 @@
-# 使用官方的 Python 镜像
-FROM python:3.9-slim
+import uuid
+import time
+from datetime import datetime
 
-# 设置工作目录
-WORKDIR /app
+# 生成随机字符串
+random_string = str(uuid.uuid4())
 
-# 将应用程序代码复制到容器内
-COPY app.py .
-
-# 设置默认命令
-CMD ["python", "app.py"]
+# 输出每5秒一次
+while True:
+    # 获取当前时间戳
+    timestamp = datetime.utcnow().isoformat() + 'Z'
+    
+    # 打印时间戳和随机字符串
+    print(f"{timestamp}: {random_string}")
+    
+    # 等待5秒
+    time.sleep(5)
 
